@@ -1,0 +1,276 @@
+.container {
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 16px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(34, 197, 94, 0.08),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #020617,
+            #071225
+        );
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 6px;
+
+    text-align: center;
+}
+
+.logo h1 {
+    color: var(--primary);
+
+    font-size: 2.7rem;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 10px rgba(34, 197, 94, .25);
+}
+
+.logo svg {
+    color: var(--primary);
+
+    filter:
+        drop-shadow(0 0 10px rgba(34, 197, 94, .3));
+}
+
+.logo p {
+    color: var(--text-secondary);
+
+    font-size: .95rem;
+}
+
+.card {
+    width: 500px;
+    max-width: 92vw;
+
+    background: rgba(17, 24, 39, .92);
+
+    border: 1px solid rgba(34, 197, 94, .20);
+    border-radius: 18px;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 0 12px rgba(34, 197, 94, .08);
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+
+    text-align: center;
+}
+
+.header h1 {
+    color: var(--text);
+
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.header p {
+    color: var(--text-secondary);
+
+    font-size: .95rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.formGroup label {
+    color: var(--text);
+
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.formGroup input {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 16px;
+
+    background: #0f172a;
+
+    border: 1px solid #233044;
+    border-radius: 10px;
+
+    color: var(--text);
+
+    outline: none;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.formGroup input:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(34, 197, 94, .08);
+}
+
+.button {
+    width: 100%;
+    height: 50px;
+
+    margin-top: 4px;
+
+    background: var(--primary);
+
+    border: none;
+    border-radius: 10px;
+
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.button:hover {
+    background: var(--primary-hover);
+
+    box-shadow:
+        0 0 15px rgba(34, 197, 94, .20);
+}
+
+.forgotPassword {
+    text-align: center;
+
+    color: var(--primary);
+
+    font-size: .9rem;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.forgotPassword:hover {
+    opacity: .8;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: var(--text-secondary);
+
+    font-size: .9rem;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #233044;
+}
+
+.registerButton {
+    width: 100%;
+    height: 50px;
+
+    background: transparent;
+
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+
+    color: var(--primary);
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.registerButton:hover {
+    background: rgba(34, 197, 94, .08);
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: 2.2rem;
+    }
+
+    .card {
+        width: 90%;
+    }
+}
+
+/* Celular */
+
+@media (max-width: 480px) {
+    .container {
+        gap: 12px;
+    }
+
+    .logo h1 {
+        font-size: 1.9rem;
+    }
+
+    .logo p {
+        font-size: .85rem;
+    }
+
+    .card {
+        width: 94%;
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+    }
+
+    .formGroup input,
+    .button,
+    .registerButton {
+        height: 46px;
+    }
+}

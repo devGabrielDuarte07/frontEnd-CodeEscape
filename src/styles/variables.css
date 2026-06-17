@@ -1,0 +1,13 @@
+:root {
+    --background: #0F172A;
+    --card: #111827;
+    --input: #1E293B;
+
+    --primary: #22C55E;
+    --primary-hover: #16A34A;
+
+    --text: #F8FAFC;
+    --text-secondary: #94A3B8;
+
+    --error: #EF4444;
+}
