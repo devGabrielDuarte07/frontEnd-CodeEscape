@@ -232,6 +232,21 @@
     background: rgba(34, 197, 94, .08);
 }
 
+.backButton {
+    background: transparent;
+    border: none;
+
+    color: #9ca3af;
+
+    cursor: pointer;
+
+    margin-top: 1rem;
+}
+
+.backButton:hover {
+    color: white;
+}
+
 /* Tablet */
 
 @media (max-width: 768px) {

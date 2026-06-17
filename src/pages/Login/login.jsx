@@ -18,7 +18,7 @@ export default function Login() {
 
             localStorage.setItem('token', token)
 
-            navigate('/home')
+            navigate('/')
         } catch (error) {
             console.error(
                 'Erro ao fazer login:',
@@ -67,6 +67,13 @@ export default function Login() {
 
                     <button type="button" className={styles.registerButton}>
                         Criar conta
+                    </button>
+
+                    <button
+                        className={styles.backButton}
+                        onClick={() => navigate("/")}
+                    >
+                        ← Voltar para Home
                     </button>
                 </div>
             </form>

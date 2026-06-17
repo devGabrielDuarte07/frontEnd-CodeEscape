@@ -108,6 +108,30 @@
     color: var(--primary);
 }
 
+.authButtons {
+    display: flex;
+    gap: .75rem;
+}
+
+.loginButton,
+.registerButton {
+    padding: .75rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.loginButton {
+    background: transparent;
+    border: 1px solid #8b5cf6;
+    color: white;
+}
+
+.registerButton {
+    background: #8b5cf6;
+    border: none;
+    color: white;
+}
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;

@@ -1,12 +1,252 @@
 .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+
     display: flex;
-    gap: 22px;
+    gap: 2rem;
+    align-items: flex-start;
+
+    min-height: calc(100vh - 80px);
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: calc(100vh - 80px);
+
+    color: white;
 }
 
 .details {
     flex: 1;
 }
 
+.roomImage {
+    width: 100%;
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    transition: .3s;
+}
+
+.roomImage:hover {
+    transform: scale(1.01);
+}
+
+.title {
+    margin-top: 1.5rem;
+    margin-bottom: .75rem;
+
+    color: white;
+
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.description {
+    color: #bdbdbd;
+
+    font-size: 1rem;
+    line-height: 1.6;
+
+    margin-bottom: 1.5rem;
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    margin-bottom: 2rem;
+}
+
+.infoCard {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    background: #171717;
+
+    color: white;
+
+    padding: .8rem 1rem;
+
+    border-radius: 10px;
+
+    border: 1px solid #2b2b2b;
+}
+
+.startButton {
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #6d28d9
+    );
+
+    color: white;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 1rem 2rem;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 20px rgba(139, 92, 246, .35);
+
+    transition: .2s;
+}
+
+.startButton:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 0 25px rgba(139, 92, 246, .5);
+}
+
 .ranking {
-    width: 22px;
+    width: 340px;
+
+    background: #141414;
+
+    border-radius: 16px;
+
+    padding: 1.25rem;
+
+    position: sticky;
+    top: 100px;
+
+    flex-shrink: 0;
+}
+
+.ranking h2 {
+    color: white;
+
+    margin-bottom: 1rem;
+}
+
+.emptyRanking {
+    color: #9ca3af;
+    text-align: center;
+
+    padding: 1rem 0;
+}
+
+.rankingItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    background: #242424;
+
+    padding: .85rem;
+
+    border-radius: 12px;
+
+    margin-bottom: .85rem;
+
+    border: 1px solid transparent;
+
+    transition: .2s;
+}
+
+.rankingItem:hover {
+    transform: translateY(-2px);
+}
+
+.gold {
+    border-color: #facc15;
+}
+
+.silver {
+    border-color: #c0c0c0;
+}
+
+.bronze {
+    border-color: #cd7f32;
+}
+
+.position {
+    min-width: 35px;
+
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    flex-shrink: 0;
+}
+
+.playerInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.playerInfo h4 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 1rem;
+}
+
+.playerInfo p {
+    margin: 0;
+
+    color: #bdbdbd;
+
+    font-size: .9rem;
+}
+
+@media (max-width: 1100px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .ranking {
+        width: 100%;
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .roomImage {
+        height: 300px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .info {
+        flex-direction: column;
+    }
+
+    .infoCard {
+        width: 100%;
+    }
+
+    .startButton {
+        width: 100%;
+    }
 }

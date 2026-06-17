@@ -6,7 +6,7 @@ export default function Final(){
         <>
             <div>
                 <h1>parabens, vc terminou</h1>
-                <button onClick={() => navigate("/home")}>Voltar</button>
+                <button onClick={() => navigate("/  ")}>Voltar</button>
             </div>
         </>
     )

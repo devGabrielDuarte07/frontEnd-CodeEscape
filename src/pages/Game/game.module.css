@@ -1,0 +1,113 @@
+.gameContainer {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 2rem;
+}
+
+.gameCard {
+    width: 100%;
+    max-width: 700px;
+
+    background: #141414;
+
+    padding: 2rem;
+
+    border-radius: 16px;
+}
+
+.badge {
+    color: #8b5cf6;
+    font-weight: 600;
+}
+
+.progress {
+    width: 100%;
+    height: 10px;
+
+    background: #222;
+
+    border-radius: 999px;
+
+    margin: 1rem 0 2rem;
+
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #8b5cf6,
+        #a855f7
+    );
+
+    transition: width .3s ease;
+}
+
+.progressText {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    color: #8b5cf6;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    text-align: right;
+}
+
+.title {
+    color: white;
+    margin: 1rem 0;
+}
+
+.question {
+    color: #d1d5db;
+    margin-bottom: 2rem;
+
+    line-height: 1.6;
+}
+
+.input {
+    width: 100%;
+
+    padding: 1rem;
+
+    border-radius: 10px;
+
+    border: 1px solid #2a2a2a;
+
+    background: #1e1e1e;
+
+    color: white;
+
+    margin-bottom: 1rem;
+}
+
+.button {
+    width: 100%;
+
+    padding: 1rem;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.error {
+    color: #ef4444;
+    margin-bottom: 1rem;
+}
