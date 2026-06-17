@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    gap: 22px;
+}
+
+.details {
+    flex: 1;
+}
+
+.ranking {
+    width: 22px;
+}

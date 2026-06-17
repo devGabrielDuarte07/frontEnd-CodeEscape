@@ -1,0 +1,234 @@
+
+.card {
+    background: var(--card);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 420px;
+    max-width: 320px;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+/* Dificuldades */
+
+.facilCard {
+    border: 1px solid #22C55E;
+
+    box-shadow:
+        0 0 10px rgba(34, 197, 94, .12);
+}
+
+.facilCard:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 0 20px rgba(34, 197, 94, .30);
+}
+
+.medioCard {
+    border: 1px solid #EAB308;
+
+    box-shadow:
+        0 0 10px rgba(234, 179, 8, .12);
+}
+
+.medioCard:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 0 20px rgba(234, 179, 8, .30);
+}
+
+.dificilCard {
+    border: 1px solid #EF4444;
+
+    box-shadow:
+        0 0 10px rgba(239, 68, 68, .12);
+}
+
+.dificilCard:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 0 20px rgba(239, 68, 68, .30);
+}
+
+/* Imagem */
+
+.capa {
+    width: 100%;
+    height: 200px;
+
+    object-fit: cover;
+
+    transition: transform .3s ease;
+}
+
+.card:hover .capa {
+    transform: scale(1.02);
+}
+
+/* Conteúdo */
+
+.content {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 18px;
+    gap: 14px;
+}
+
+/* Badge */
+
+.dificuldade {
+    width: fit-content;
+
+    padding: 5px 14px;
+
+    border-radius: 999px;
+
+    font-size: .75rem;
+    font-weight: 700;
+
+    border: 1px solid currentColor;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.facil {
+    color: #22C55E;
+    background: rgba(34, 197, 94, .08);
+}
+
+.medio {
+    color: #EAB308;
+    background: rgba(234, 179, 8, .08);
+}
+
+.dificil {
+    color: #EF4444;
+    background: rgba(239, 68, 68, .08);
+}
+
+/* Título */
+
+.titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+/* Descrição */
+
+.descricao {
+    color: var(--text-secondary);
+
+    line-height: 1.6;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    overflow: hidden;
+    flex: 1;
+}
+
+/* Área dos enigmas */
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border-top: 1px solid rgba(255,255,255,.08);
+
+    padding-top: 16px;
+    margin-top: auto;
+}
+
+.quantidade {
+    color: var(--text-secondary);
+
+    font-size: .95rem;
+    font-weight: 500;
+}
+
+/* Botões */
+
+.button {
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 16px;
+
+    border: none;
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.botaoFacil {
+    background: linear-gradient(
+        135deg,
+        #22C55E,
+        #16A34A
+    );
+
+     border: 1px solid rgba(34,197,94,.5);
+}
+
+.botaoFacil:hover {
+    box-shadow:
+        0 0 15px rgba(34, 197, 94, .35);
+}
+
+.botaoMedio {
+    background: linear-gradient(
+        135deg,
+        #EAB308,
+        #CA8A04
+    );
+
+    color: #111827;
+
+    border: 1px solid rgba(234,179,8,.5);
+}
+
+.botaoMedio:hover {
+    box-shadow:
+        0 0 15px rgba(234, 179, 8, .35);
+}
+
+.botaoDificil {
+    background: linear-gradient(
+        135deg,
+        #EF4444,
+        #DC2626
+    );
+
+    border: 1px solid rgba(239,68,68,.5);
+}
+
+.botaoDificil:hover {
+    box-shadow:
+        0 0 15px rgba(239, 68, 68, .35);
+}

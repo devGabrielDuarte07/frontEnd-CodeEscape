@@ -4,7 +4,7 @@ import { API_URL } from "../../services/api"
 import { useParams } from "react-router-dom";
 import { start } from "../../services/gameSessionService";
 import { useNavigate } from "react-router-dom";
-
+import styles from "./roomDetails.module.css"
 export default function RoomDetails() {
     const { id } = useParams()
     const [sala, setSala] = useState(null)
@@ -47,13 +47,19 @@ export default function RoomDetails() {
     }
     return (
         <>
-            <div key={sala.id}>
-                <img src={`${API_URL}/${sala.capaUrl}`} alt={sala.nome} />
-                <h3>{sala.nome}</h3>
-                <p>{sala.descricao}</p>
-                <p>{sala.quantidadeEnigmas}</p>
-                <p>{sala.dificuldade}</p>
-                <button onClick={() => startGame(id)}>Iniciar partida</button>
+            <div className={styles.container}>
+                <div key={sala.id} className={styles.details}>
+                    <img src={`${API_URL}/${sala.capaUrl}`} alt={sala.nome} />
+                    <h3>{sala.nome}</h3>
+                    <p>{sala.descricao}</p>
+                    <p>{sala.quantidadeEnigmas}</p>
+                    <p>{sala.dificuldade}</p>
+                    <button onClick={() => startGame(id)}>Iniciar partida</button>
+                </div>
+
+                <div className={styles.ranking}>
+
+                </div>
             </div>
         </>
     );

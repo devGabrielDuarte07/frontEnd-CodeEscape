@@ -1,13 +1,19 @@
 :root {
-    --background: #0F172A;
+    --background: #050816;
     --card: #111827;
-    --input: #1E293B;
+    --input: #1A1F35;
 
-    --primary: #22C55E;
-    --primary-hover: #16A34A;
+    --primary: #8B5CF6;
+    --primary-hover: #7C3AED;
+
+    --secondary: #38BDF8;
 
     --text: #F8FAFC;
     --text-secondary: #94A3B8;
 
     --error: #EF4444;
+
+    --facil: #22C55E;
+    --media: #EAB308;
+    --dificil: #EF4444;
 }
