@@ -1,9 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-
+import { Lightbulb } from "lucide-react";
+import Swal from "sweetalert2";
 import {
     obterEnigmaAtual,
-    responder
+    responder,
+    obterDica
 } from "../../services/gameSessionService";
 
 import styles from "./game.module.css";
@@ -18,11 +20,55 @@ export default function Game() {
     const [erro, setErro] = useState("");
     const [carregando, setCarregando] = useState(true);
     const [enviando, setEnviando] = useState(false);
+    const [dica, setDica] = useState("")
 
+    async function buscarDica() {
+        setErro("");
+
+        try {
+            const resultado = await obterDica(gameSessionId);
+
+            setDica(resultado.dica);
+        }
+        catch (error) {
+            console.error(
+                error.response?.data || error.message
+            );
+
+            setErro(
+                error.response?.data?.mensagem ||
+                "Não foi possível obter a dica."
+            );
+        }
+    }
+    async function abrirModalDica() {
+        const result = await Swal.fire({
+            title: "Utilizar dica?",
+            text: "Você perderá 25 pontos ao revelar a dica.",
+            icon: "warning",
+
+            background: "#141414",
+            color: "#fff",
+
+            confirmButtonText: "Usar dica",
+            cancelButtonText: "Cancelar",
+
+            showCancelButton: true,
+
+            confirmButtonColor: "#f97316",
+            cancelButtonColor: "#2a2a2a"
+        });
+
+        if (!result.isConfirmed)
+            return;
+
+        buscarDica();
+    }
     useEffect(() => {
         async function carregarEnigma() {
             try {
                 const data = await obterEnigmaAtual(gameSessionId);
+
                 setEnigma(data);
             } catch (error) {
                 console.error(
@@ -57,7 +103,7 @@ export default function Game() {
             }
 
             if (data.finalizada) {
-                navigate("/game/finalizada");
+                navigate(`/game/${gameSessionId}/finalizada`);
                 return;
             }
 
@@ -66,7 +112,8 @@ export default function Game() {
 
             setEnigma(novoEnigma);
             setResposta("");
-            setErro("")
+            setErro("");
+            setDica("");
         }
         catch (error) {
             console.error(
@@ -103,9 +150,30 @@ export default function Game() {
                 className={styles.gameCard}
                 onSubmit={responderEnigma}
             >
-                <span className={styles.badge}>
-                    Enigma {enigma.ordem} de {enigma.totalEnigmas}
-                </span>
+                <div className={styles.topInfo}>
+                    <span className={styles.badge}>
+                        Enigma {enigma.ordem} de {enigma.totalEnigmas}
+                    </span>
+
+                    {!dica ? (
+                        <button
+                            type="button"
+                            onClick={abrirModalDica}
+                            className={styles.dicaButton}
+                        >
+                            <Lightbulb size={18} />
+                        </button>
+                    ) : (
+                        <button
+                            type="button"
+                            disabled
+                            className={styles.dicaButton}
+                            title="Dica utilizada"
+                        >
+                            <Lightbulb size={18} />
+                        </button>
+                    )}
+                </div>
 
                 <div className={styles.progress}>
                     <div
@@ -115,11 +183,14 @@ export default function Game() {
                         }}
                     />
                 </div>
+
                 <p className={styles.progressText}>
                     {Math.round(
                         (enigma.ordem / enigma.totalEnigmas) * 100
-                    )}% concluído
+                    )}
+                    % concluído
                 </p>
+
                 <h1 className={styles.title}>
                     {enigma.titulo}
                 </h1>
@@ -128,6 +199,13 @@ export default function Game() {
                     {enigma.pergunta}
                 </p>
 
+                {dica && (
+                    <div className={styles.dicaBox}>
+                        <h3>💡 Dica</h3>
+                        <p>{dica}</p>
+                    </div>
+                )}
+
                 <input
                     className={styles.input}
                     type="text"
@@ -135,7 +213,6 @@ export default function Game() {
                     maxLength={100}
                     ref={inputRef}
                     disabled={enviando}
-
                     autoComplete="off"
                     value={resposta}
                     onChange={(e) =>
@@ -155,7 +232,9 @@ export default function Game() {
                     className={styles.button}
                     type="submit"
                 >
-                    {enviando ? "Verificando..." : "Responder"}
+                    {enviando
+                        ? "Verificando..."
+                        : "Responder"}
                 </button>
             </form>
         </div>

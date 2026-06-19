@@ -1,0 +1,239 @@
+.container {
+    max-width: 1200px;
+    min-height: calc(100vh - 80px);
+
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+
+    color: var(--text);
+}
+
+.loading {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: .5rem;
+}
+
+.header p {
+    color: var(--text-secondary);
+}
+
+.profileCard {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 2rem;
+    margin-bottom: 2rem;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 4px solid var(--primary);
+}
+
+.userInfo {
+    flex: 1;
+}
+
+.userInfo h2 {
+    font-size: 2rem;
+    margin-bottom: .25rem;
+}
+
+.userInfo span {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.userInfo p {
+    margin-top: .4rem;
+    color: var(--text-secondary);
+}
+
+.userInfo small {
+    display: block;
+    margin-top: .6rem;
+    color: var(--text-secondary);
+}
+
+.editButton {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #4f46e5
+    );
+
+    color: white;
+    border: none;
+
+    padding: .9rem 1.2rem;
+    border-radius: 12px;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.editButton:hover {
+    transform: translateY(-2px);
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+    margin-bottom: 2rem;
+}
+
+.statCard {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    padding: 1.5rem;
+
+    text-align: center;
+
+    transition: .3s;
+}
+
+.statCard:hover {
+    transform: translateY(-5px);
+}
+
+.statCard svg {
+    color: var(--primary);
+    margin-bottom: .8rem;
+}
+
+.statCard h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: .5rem;
+}
+
+.statCard p {
+    color: var(--text-secondary);
+}
+
+.favoriteRoom {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    padding: 2rem;
+}
+
+.favoriteRoom h2 {
+    margin-bottom: 1.5rem;
+}
+
+.roomCard {
+    padding: 2rem;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(124, 58, 237, .15),
+        rgba(79, 70, 229, .08)
+    );
+
+    border: 1px solid rgba(124, 58, 237, .25);
+}
+
+.roomCard h3 {
+    text-align: center;
+    color: var(--primary);
+
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.roomInfo {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.roomInfo div {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.roomInfo span {
+    color: var(--text-secondary);
+}
+
+.roomInfo strong {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 900px) {
+    .profileCard {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .roomInfo {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .userInfo h2 {
+        font-size: 1.6rem;
+    }
+}

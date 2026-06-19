@@ -8,7 +8,10 @@ import Final from "../pages/Final/final.jsx";
 import ComoFunciona from "../pages/Como-funciona/comoFunciona.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import Register from "../pages/Register/register.jsx";
+import Sobre from "../pages/Sobre/sobre.jsx";
 
+
+import Perfil from "../pages/Perfil/perfil.jsx";
 function AppRoutes() {
   return (
     <Routes>
@@ -17,7 +20,7 @@ function AppRoutes() {
       <Route path="/room/:id" element={<RoomDetails />} />
       <Route path="/como-funciona" element={<ComoFunciona />} />
       <Route path="/register" element={<Register />} />
-
+      <Route path="/desenvolvedor" element={<Sobre />} />
 
       <Route
         path="/game/:gameSessionId"
@@ -27,12 +30,20 @@ function AppRoutes() {
           </PrivateRoute>} />
 
       <Route
-        path="/game/finalizada"
+        path="/game/:gameSessionId/finalizada"
         element={
           <PrivateRoute>
             < Final />
           </PrivateRoute>} />
 
+
+      <Route 
+        path="/perfil"
+        element={
+          <PrivateRoute>
+            <Perfil />
+          </PrivateRoute>
+        } />
            
     </Routes>
   );

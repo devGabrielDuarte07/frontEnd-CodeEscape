@@ -4,7 +4,7 @@ import { API_URL } from "../../services/api"
 import { useNavigate } from "react-router-dom";
 import styles from "./home.module.css"
 import RoomCard from "../../components/RoomCards/roomCard";
-import NavBar from "../../components/NavBar/navBar";
+import NavBar from "../../components/NavBar/navBar"
 
 export default function Home() {
     const [salas, setSalas] = useState([])
