@@ -7,7 +7,7 @@ import Game from "../pages/Game/game.jsx"
 import Final from "../pages/Final/final.jsx";
 import ComoFunciona from "../pages/Como-funciona/comoFunciona.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
-import Register from "../pages/Register/register.jsx";
+import Cadastro from "../pages/Cadastro/cadastro.jsx";
 import Sobre from "../pages/Sobre/sobre.jsx";
 
 
@@ -19,7 +19,7 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/room/:id" element={<RoomDetails />} />
       <Route path="/como-funciona" element={<ComoFunciona />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/desenvolvedor" element={<Sobre />} />
 
       <Route

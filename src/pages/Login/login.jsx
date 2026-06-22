@@ -65,7 +65,7 @@ export default function Login() {
                         ou
                     </div>
 
-                    <button type="button" className={styles.registerButton}>
+                    <button type="button" onClick={() => navigate("/cadastro")} className={styles.registerButton}>
                         Criar conta
                     </button>
 

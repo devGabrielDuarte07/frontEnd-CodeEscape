@@ -112,7 +112,7 @@ export default function NavBar() {
 
                     <button
                         className={styles.registerButton}
-                        onClick={() => navigate("/register")}
+                        onClick={() => navigate("/cadastro")}
                     >
                         Criar Conta
                     </button>
