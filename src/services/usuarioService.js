@@ -12,3 +12,11 @@ export async function obterPerfil() {
 
     return response.data.dados;
 }
+
+export async function atualizarAvatar(avatarUrl) {
+    const response = await api.put("/Usuario/avatar", {
+        avatarUrl
+    });
+
+    return response.data.dados;
+}

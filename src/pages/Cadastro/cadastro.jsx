@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "../../utils/toast";
 import { UserPlus, Camera } from "lucide-react";
 import { criarUsuario } from "../../services/usuarioService";
+import { salvarAvatar } from "../../services/uploadService";
+import { API_URL } from "../../services/api";
 import styles from "./cadastro.module.css";
 
 export default function Cadastro() {
@@ -16,20 +18,39 @@ export default function Cadastro() {
 
     const [preview, setPreview] = useState(null);
     const [avatarUrl, setAvatarUrl] = useState("");
+    const [enviandoAvatar, setEnviandoAvatar] = useState(false);
 
-    function handleAvatarChange(e) {
+    async function handleAvatarChange(e) {
         const file = e.target.files?.[0];
 
         if (!file) return;
 
         setPreview(URL.createObjectURL(file));
+        setEnviandoAvatar(true);
 
-        // Quando criar upload real, troque isso
-        setAvatarUrl(file.name);
+        try {
+            const avatar = await salvarAvatar(file);
+
+            setAvatarUrl(avatar);
+        }
+        catch {
+            setPreview(null);
+            setAvatarUrl("");
+
+            toast("error", "Erro ao enviar a imagem.");
+        }
+        finally {
+            setEnviandoAvatar(false);
+        }
     }
+
 
     async function handleSubmit(e) {
         e.preventDefault();
+
+        if (enviandoAvatar) {
+            return toast("warning", "Aguarde o envio da imagem.");
+        }
 
         if (
             !nome ||
@@ -88,7 +109,7 @@ export default function Cadastro() {
                         <img
                             src={
                                 preview ||
-                                "/uploads/avatars/default.png"
+                                `${API_URL}/uploads/avatars/default.png`
                             }
                             alt="Avatar"
                             className={styles.avatar}
@@ -152,8 +173,8 @@ export default function Cadastro() {
                         }
                     />
 
-                    <button type="submit">
-                        Criar Conta
+                    <button type="submit" disabled={enviandoAvatar}>
+                        {enviandoAvatar ? "Enviando imagem..." : "Criar Conta"}
                     </button>
                 </form>
 

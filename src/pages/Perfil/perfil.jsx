@@ -1,26 +1,45 @@
-import { useEffect, useState } from "react";
+impuseState } from "react";
 import { Trophy, Puzzle, Star, Clock3, UserPen } from "lucide-react";
-import { obterPerfil } from "../../services/usuarioService";
 import { API_URL } from "../../services/api";
 import NavBar from "../../components/NavBar/navBar";
 import styles from "./perfil.module.css";
+import { Camera } from "lucide-react";
+import { salvarAvatar } from "../../services/uploadService";
+import { atualizarAvatar } from "../../services/usuarioService";
+import { useUser } from "../../context/UserContext";
+import { toast } from "../../utils/toast";
 
 export default function Perfil() {
-    const [perfil, setPerfil] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const { usuario, carregarUsuario } = useUser();
 
-    useEffect(() => {
-        carregarPerfil();
-    }, []);
+    const perfil = usuario;
+    const [enviandoAvatar, setEnviandoAvatar] = useState(false);
 
-    async function carregarPerfil() {
+    async function handleAvatarChange(e) {
+        const file = e.target.files?.[0];
+
+        if (!file) return;
+
+        setEnviandoAvatar(true);
+
         try {
-            const dados = await obterPerfil();
-            setPerfil(dados);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
+            // Faz upload da imagem
+            const novaUrl = await salvarAvatar(file);
+
+            // Atualiza no banco
+            await atualizarAvatar(novaUrl);
+
+            await carregarUsuario();
+        }
+        catch (error) {
+            toast(
+                "error",
+                error?.response?.data?.mensagem ||
+                "Não foi possível atualizar o avatar."
+            );
+        }
+        finally {
+            setEnviandoAvatar(false);
         }
     }
 
@@ -35,18 +54,10 @@ export default function Perfil() {
         ).padStart(2, "0")}`;
     }
 
-    if (loading) {
-        return (
-            <div className={styles.loading}>
-                <h2>Carregando perfil...</h2>
-            </div>
-        );
-    }
-
     if (!perfil) {
         return (
             <div className={styles.loading}>
-                <h2>Não foi possível carregar o perfil.</h2>
+                <h2>Carregando perfil...</h2>
             </div>
         );
     }
@@ -62,11 +73,40 @@ export default function Perfil() {
                 </div>
 
                 <div className={styles.profileCard}>
-                    <img
-                        src={`${API_URL}${perfil.avatarUrl}`}
-                        alt={perfil.nome}
-                        className={styles.avatar}
-                    />
+                    <div className={styles.avatarWrapper}>
+                        <img
+                            src={`${API_URL}${perfil.avatarUrl}`}
+                            alt={perfil.nome}
+                            className={styles.avatar}
+                        />
+
+                        <div className={styles.cameraBadge}>
+                            <Camera size={20} />
+                        </div>
+                        <label
+                            htmlFor="avatar"
+                            className={styles.avatarOverlay}
+                        >
+                            {enviandoAvatar ? (
+                                <span>Enviando...</span>
+                            ) : (
+                                <>
+                                    <Camera size={22} />
+                                    <span>Alterar</span>
+                                </>
+                            )}
+                        </label>
+
+                        <input
+                            id="avatar"
+                            type="file"
+                            accept="image/*"
+                            hidden
+                            disabled={enviandoAvatar}
+
+                            onChange={handleAvatarChange}
+                        />
+                    </div>
 
                     <div className={styles.userInfo}>
                         <h2>{perfil.nome}</h2>

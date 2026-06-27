@@ -1,12 +1,14 @@
 import { useState } from "react"
 import { login } from "../../services/authService"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Lock } from "lucide-react";
+import { useUser } from "../../context/UserContext";
 import styles from "./login.module.css";
 
 export default function Login() {
 
     const navigate = useNavigate()
+    const { carregarUsuario } = useUser();
     const [user, setUser] = useState('')
     const [senha, setSenha] = useState('')
 
@@ -17,6 +19,8 @@ export default function Login() {
             console.log(token);
 
             localStorage.setItem('token', token)
+
+            await carregarUsuario();
 
             navigate('/')
         } catch (error) {
@@ -70,6 +74,7 @@ export default function Login() {
                     </button>
 
                     <button
+                        type="button"
                         className={styles.backButton}
                         onClick={() => navigate("/")}
                     >

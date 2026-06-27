@@ -15,6 +15,10 @@
         0 4px 20px rgba(0, 0, 0, .15);
 }
 
+/* ========================= */
+/* LOGO */
+/* ========================= */
+
 .logo {
     display: flex;
     align-items: center;
@@ -35,6 +39,10 @@
     filter:
         drop-shadow(0 0 8px rgba(139, 92, 246, .4));
 }
+
+/* ========================= */
+/* LINKS */
+/* ========================= */
 
 .links {
     display: flex;
@@ -96,36 +104,88 @@
 .user {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: .8rem;
 
-    padding: 10px 16px;
+    padding: .55rem .8rem;
 
     border-radius: 999px;
 
     background: rgba(255,255,255,.03);
 
-    border: 1px solid rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
 
     color: var(--text);
 
     cursor: pointer;
 
-    transition: .2s ease;
+    transition: all .25s ease;
 
     font-size: .95rem;
 }
 
 .user:hover {
-    background: rgba(139, 92, 246, .08);
-    border-color: rgba(139, 92, 246, .2);
-}
+    background: rgba(139,92,246,.08);
 
-.user svg {
-    color: var(--primary);
+    border-color: rgba(139,92,246,.30);
+
+    box-shadow:
+        0 0 0 1px rgba(139,92,246,.15),
+        0 10px 25px rgba(0,0,0,.18);
+
+    transform: translateY(-1px);
 }
 
 .user span {
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* ========================= */
+/* AVATAR */
+/* ========================= */
+
+.avatar {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    flex-shrink: 0;
+
+    border: 2px solid rgba(139,92,246,.55);
+
+    box-shadow:
+        0 0 0 2px rgb(17,24,39),
+        0 0 14px rgba(139,92,246,.25);
+
+    transition: .25s ease;
+}
+
+.user:hover .avatar{
+    transform: scale(1.08);
+    box-shadow:
+        0 0 0 2px var(--primary),
+        0 0 18px rgba(139,92,246,.45);
+}
+
+/* ========================= */
+/* CHEVRON */
+/* ========================= */
+
+.chevron {
+    color: var(--primary);
+
+    opacity: .75;
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+    opacity: 1;
 }
 
 /* ========================= */
@@ -135,21 +195,25 @@
 .dropdown {
     position: absolute;
 
-    top: calc(100% + 10px);
+    top: calc(100% + 12px);
     right: 0;
 
-    min-width: 200px;
+    min-width: 240px;
 
-    background: var(--card);
+    background: rgba(17,24,39,.98);
 
-    border: 1px solid rgba(139, 92, 246, .15);
+    backdrop-filter: blur(14px);
 
-    border-radius: 14px;
+    border: 1px solid rgba(139,92,246,.15);
+
+    border-radius: 16px;
 
     overflow: hidden;
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, .25);
+        0 15px 40px rgba(0,0,0,.35);
+
+    animation: dropdown .18s ease;
 
     z-index: 999;
 }
@@ -159,24 +223,34 @@
 
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: .75rem;
+
+    padding: 1rem;
+
+    border: none;
 
     background: transparent;
-    border: none;
 
     color: var(--text);
 
-    text-align: left;
+    font-size: .95rem;
+    font-weight: 500;
 
-    padding: 14px 16px;
+    text-align: left;
 
     cursor: pointer;
 
-    transition: .2s ease;
+    transition: .2s;
+}
+
+.dropdown button svg {
+    color: var(--primary);
 }
 
 .dropdown button:hover {
-    background: rgba(139, 92, 246, .08);
+    background: rgba(139,92,246,.08);
+
+    padding-left: 1.2rem;
 }
 
 .dropdown button:not(:last-child) {
@@ -191,8 +265,48 @@
     color: #ef4444;
 }
 
+.dropdown button:last-child:hover {
+    background: rgba(239,68,68,.08);
+}
+
+.dropdownHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1.2rem 1rem;
+
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.dropdownAvatar {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    margin-bottom: .75rem;
+
+    border: 2px solid var(--primary);
+
+    box-shadow: 0 0 16px rgba(139,92,246,.25);
+}
+
+.dropdownHeader strong {
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.dropdownHeader span {
+    margin-top: .2rem;
+
+    color: var(--text-secondary);
+    font-size: .85rem;
+}
+
 /* ========================= */
-/* AUTH */
+/* BOTÕES LOGIN */
 /* ========================= */
 
 .authButtons {
@@ -214,17 +328,17 @@
 .loginButton {
     background: transparent;
 
-    border: 1px solid #8b5cf6;
+    border: 1px solid var(--primary);
 
     color: white;
 }
 
 .loginButton:hover {
-    background: rgba(139, 92, 246, .08);
+    background: rgba(139,92,246,.08);
 }
 
 .registerButton {
-    background: #8b5cf6;
+    background: var(--primary);
 
     border: none;
 
@@ -232,7 +346,26 @@
 }
 
 .registerButton:hover {
-    opacity: .9;
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(139,92,246,.30);
+}
+
+/* ========================= */
+/* ANIMAÇÕES */
+/* ========================= */
+
+@keyframes dropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ========================= */
@@ -240,6 +373,7 @@
 /* ========================= */
 
 @media (max-width: 768px) {
+
     .navbar {
         flex-direction: column;
 
@@ -260,13 +394,15 @@
 
     .userContainer {
         width: 100%;
+
         display: flex;
         justify-content: center;
     }
 
     .dropdown {
-        right: auto;
         left: 50%;
+        right: auto;
+
         transform: translateX(-50%);
     }
 }

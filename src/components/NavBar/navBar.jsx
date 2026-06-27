@@ -1,39 +1,24 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { User, Lock, ChevronDown, LogOut, UserCircle } from "lucide-react";
-
-import { obterPerfil } from "../../services/usuarioService";
-
+import { Lock, ChevronDown, LogOut, UserCircle } from "lucide-react";
+import { API_URL } from "../../services/api";
+import { useUser } from "../../context/UserContext";
+import { useState } from "react";
 import styles from "./navBar.module.css";
 
 export default function NavBar() {
-    const token = localStorage.getItem("token");
 
-    const [nomeUsuario, setNomeUsuario] = useState("");
     const [menuAberto, setMenuAberto] = useState(false);
 
     const navigate = useNavigate();
+    const { usuario, limparUsuario } = useUser();
 
-    async function carregarUsuario() {
-        try {
-            const dados = await obterPerfil();
-            setNomeUsuario(dados.nome);
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     function logout() {
+        setMenuAberto(false);
         localStorage.removeItem("token");
-        navigate("/");
-        window.location.reload();
+        limparUsuario();
+        navigate("/login");
     }
-
-    useEffect(() => {
-        if (token) {
-            carregarUsuario();
-        }
-    }, [token]);
 
     return (
         <nav className={styles.navbar}>
@@ -71,19 +56,43 @@ export default function NavBar() {
                 </NavLink>
             </div>
 
-            {token ? (
+            {usuario ? (
                 <div className={styles.userContainer}>
                     <button
                         className={styles.user}
                         onClick={() => setMenuAberto(!menuAberto)}
                     >
-                        <User />
-                        <span>{nomeUsuario || "Perfil"}</span>
-                        <ChevronDown size={16} />
+                        <img
+                            src={`${API_URL}${usuario.avatarUrl || "/uploads/avatars/default.png"}`}
+                            alt={usuario.nome}
+                            className={styles.avatar}
+                        />
+
+                        <span>{usuario.nome}</span>
+
+                        <ChevronDown
+                            size={16}
+                            className={
+                                menuAberto
+                                    ? styles.chevronOpen
+                                    : styles.chevron
+                            }
+                        />
                     </button>
 
                     {menuAberto && (
                         <div className={styles.dropdown}>
+                            <div className={styles.dropdownHeader}>
+                                <img
+                                    src={`${API_URL}${usuario.avatarUrl || "/uploads/avatars/default.png"}`}
+                                    alt={usuario.nome}
+                                    className={styles.dropdownAvatar}
+                                />
+
+                                <strong>{usuario.nome}</strong>
+
+                                <span>{usuario.email}</span>
+                            </div>
                             <button
                                 onClick={() => {
                                     navigate("/perfil");
