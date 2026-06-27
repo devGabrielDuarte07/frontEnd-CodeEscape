@@ -5,19 +5,18 @@ import { ListarSalasPorId } from "../../services/roomService";
 import { rankingSala } from "../../services/rankingService";
 import { start } from "../../services/gameSessionService";
 import { API_URL } from "../../services/api";
-
+import { useUser } from "../../context/UserContext";
 import NavBar from "../../components/NavBar/navBar";
 
 import styles from "./roomDetails.module.css";
 
 export default function RoomDetails() {
     const { id } = useParams();
-    const token = localStorage.getItem("token");
     const [sala, setSala] = useState(null);
     const [ranking, setRanking] = useState([]);
 
     const navigate = useNavigate();
-
+    const { usuario } = useUser();
     function formatarTempo(segundos) {
         const minutos = Math.floor(segundos / 60);
         const segundosRestantes = segundos % 60;
@@ -34,13 +33,6 @@ export default function RoomDetails() {
     }
 
     async function startGame(id) {
-        const token = localStorage.getItem("token");
-
-        if (!token) {
-            navigate("/login");
-            return;
-        }
-
         try {
             const data = await start(id);
 
@@ -116,7 +108,7 @@ export default function RoomDetails() {
                         </div>
                     </div>
 
-                    {token ? (
+                    {usuario ? (
                         <button
                             className={styles.startButton}
                             onClick={() => startGame(id)}

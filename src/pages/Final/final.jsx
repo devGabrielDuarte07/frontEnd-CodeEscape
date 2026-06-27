@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { resultadoPartida, start } from "../../services/gameSessionService";
-
+import { useUser } from "../../context/UserContext";
 import styles from "./final.module.css";
 
 export default function Final() {
@@ -9,14 +9,12 @@ export default function Final() {
     const { gameSessionId } = useParams();
 
     const [resultado, setResultado] = useState(null);
-    const [roomId, setRoomId] = useState()
+    const { usuario } = useUser();
     useEffect(() => {
         async function carregarResultado() {
             try {
                 const data = await resultadoPartida(gameSessionId);
-
-                console.log(data);
-                setRoomId(data.codigoSala);
+                
                 setResultado(data);
             } catch (error) {
                 console.error(
@@ -36,9 +34,7 @@ export default function Final() {
     }
 
     async function startGame(id) {
-        const token = localStorage.getItem("token");
-
-        if (!token) {
+        if (!usuario) {
             navigate("/login");
             return;
         }
@@ -117,7 +113,7 @@ export default function Final() {
 
                     <button
                         className={styles.playAgainButton}
-                        onClick={() => startGame(roomId)}
+                        onClick={() => startGame(resultado.codigoSala)}
                     >
                         Jogar Novamente
                     </button>

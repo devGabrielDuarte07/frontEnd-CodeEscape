@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { listarSalas } from "../../services/roomService";
 import { API_URL } from "../../services/api"
-import { useNavigate } from "react-router-dom";
 import styles from "./home.module.css"
 import RoomCard from "../../components/RoomCards/roomCard";
 import NavBar from "../../components/NavBar/navBar"
 
 export default function Home() {
     const [salas, setSalas] = useState([])
-    const navigate = useNavigate()
     useEffect(() => {
         async function carregarSalas() {
-            const data = await listarSalas();
-
-            console.log(data)
-
-            setSalas(data)
+            try {
+                const data = await listarSalas();
+                setSalas(data);
+            } catch (error) {
+                console.error(error);
+            }
         }
 
         carregarSalas();

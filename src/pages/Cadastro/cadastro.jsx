@@ -76,12 +76,8 @@ export default function Cadastro() {
         };
 
         try {
-            console.log(dados);
+            await criarUsuario(dados);
 
-
-            const user = await criarUsuario(dados)
-
-            console.log(user)
             toast("success", "Conta criada com sucesso!");
 
             navigate("/login");

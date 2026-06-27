@@ -10,15 +10,13 @@ export default function NavBar() {
     const [menuAberto, setMenuAberto] = useState(false);
 
     const navigate = useNavigate();
-    const { usuario, limparUsuario } = useUser();
-
+    const { usuario, logout: logoutContext } = useUser();
 
     function logout() {
-        setMenuAberto(false);
-        localStorage.removeItem("token");
-        limparUsuario();
-        navigate("/login");
-    }
+    setMenuAberto(false);
+    logoutContext();
+    navigate("/login");
+}
 
     return (
         <nav className={styles.navbar}>

@@ -1,4 +1,4 @@
-impuseState } from "react";
+import { useState } from "react";
 import { Trophy, Puzzle, Star, Clock3, UserPen } from "lucide-react";
 import { API_URL } from "../../services/api";
 import NavBar from "../../components/NavBar/navBar";

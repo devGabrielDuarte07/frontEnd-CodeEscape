@@ -62,7 +62,7 @@ export default function Game() {
         if (!result.isConfirmed)
             return;
 
-        buscarDica();
+        await buscarDica();
     }
     useEffect(() => {
         async function carregarEnigma() {
@@ -70,6 +70,7 @@ export default function Game() {
                 const data = await obterEnigmaAtual(gameSessionId);
 
                 setEnigma(data);
+                setDica("");
             } catch (error) {
                 console.error(
                     error.response?.data || error.message
@@ -110,10 +111,10 @@ export default function Game() {
             const novoEnigma =
                 await obterEnigmaAtual(gameSessionId);
 
-            setEnigma(novoEnigma);
             setResposta("");
             setErro("");
             setDica("");
+            setEnigma(novoEnigma);
         }
         catch (error) {
             console.error(
