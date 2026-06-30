@@ -52,9 +52,10 @@ export default function RoomDetails() {
                     ListarSalasPorId(id),
                     rankingSala(id)
                 ]);
-
+                
                 setSala(salaData);
                 setRanking(rankingData);
+                console.log(salaData)
             } catch (error) {
                 console.error(error);
             }

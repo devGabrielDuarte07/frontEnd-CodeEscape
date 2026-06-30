@@ -13,10 +13,10 @@ export default function NavBar() {
     const { usuario, logout: logoutContext } = useUser();
 
     function logout() {
-    setMenuAberto(false);
-    logoutContext();
-    navigate("/login");
-}
+        setMenuAberto(false);
+        logoutContext();
+        navigate("/login");
+    }
 
     return (
         <nav className={styles.navbar}>
@@ -52,6 +52,15 @@ export default function NavBar() {
                 >
                     Desenvolvedor
                 </NavLink>
+
+                <NavLink
+                    to="/ajude-nos"
+                    className={({ isActive }) =>
+                        isActive ? styles.active : styles.link
+                    }>
+                    Ajude-nos
+                </NavLink>
+
             </div>
 
             {usuario ? (

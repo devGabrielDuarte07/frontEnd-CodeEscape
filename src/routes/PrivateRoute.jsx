@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
-
+import { useUser } from "../context/UserContext";
 export default function PrivateRoute({ children }) {
     const token = localStorage.getItem("token");
-
+    const { logout } = useUser();
     if (!token) {
         return <Navigate to="/login" replace />;
     }
@@ -13,7 +13,7 @@ export default function PrivateRoute({ children }) {
         const agora = Date.now() / 1000;
 
         if (payload.exp < agora) {
-            localStorage.removeItem("token");
+            logout();
 
             return <Navigate to="/login" replace />;
         }
@@ -21,7 +21,7 @@ export default function PrivateRoute({ children }) {
         return children;
     }
     catch {
-        localStorage.removeItem("token");
+        logout();
 
         return <Navigate to="/login" replace />;
     }

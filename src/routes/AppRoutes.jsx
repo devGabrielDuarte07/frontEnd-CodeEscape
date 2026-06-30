@@ -9,7 +9,7 @@ import ComoFunciona from "../pages/Como-funciona/comoFunciona.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import Cadastro from "../pages/Cadastro/cadastro.jsx";
 import Sobre from "../pages/Sobre/sobre.jsx";
-
+import AjudeNos from "../pages/AjudeNos/ajudeNos.jsx";
 
 import Perfil from "../pages/Perfil/perfil.jsx";
 function AppRoutes() {
@@ -21,7 +21,8 @@ function AppRoutes() {
       <Route path="/como-funciona" element={<ComoFunciona />} />
       <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/desenvolvedor" element={<Sobre />} />
-
+      <Route path="/ajude-nos" element={<AjudeNos />} />
+      
       <Route
         path="/game/:gameSessionId"
         element={
