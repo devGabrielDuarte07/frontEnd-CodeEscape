@@ -7,6 +7,8 @@ import NavBar from "../../components/NavBar/navBar"
 
 export default function Home() {
     const [salas, setSalas] = useState([])
+    const [carregando, setCarregando] = useState(true);
+
     useEffect(() => {
         async function carregarSalas() {
             try {
@@ -14,6 +16,8 @@ export default function Home() {
                 setSalas(data);
             } catch (error) {
                 console.error(error);
+            } finally {
+                setCarregando(false);
             }
         }
 
@@ -38,13 +42,24 @@ export default function Home() {
                     </div>
 
                     <div className={styles.containerCards}>
-                        {salas.map(sala => (
-                            <RoomCard
-                                key={sala.id}
-                                sala={sala}
-                                apiUrl={API_URL}
-                            />
-                        ))}
+                        {carregando ? (
+                            <div className={styles.loadingContainer}>
+                                <div className={styles.spinner}></div>
+                                <p>Carregando salas...</p>
+                            </div>
+                        ) : salas.length === 0 ? (
+                            <div className={styles.loadingContainer}>
+                                <p>Nenhuma sala encontrada.</p>
+                            </div>
+                        ) : (
+                            salas.map((sala) => (
+                                <RoomCard
+                                    key={sala.id}
+                                    sala={sala}
+                                    apiUrl={API_URL}
+                                />
+                            ))
+                        )}
                     </div>
 
                 </div>
