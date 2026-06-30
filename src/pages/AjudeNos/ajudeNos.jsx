@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import Swal from "sweetalert2";
 
-import Navbar from "../../components/NavBar/NavBar";
+import Navbar from "../../components/NavBar/navBar";
 import { enviarFeedback } from "../../services/feedbackService";
 import { useUser } from "../../context/UserContext";
 
