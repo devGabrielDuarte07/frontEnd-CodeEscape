@@ -36,22 +36,21 @@ export default function Sobre() {
                             <div className={styles.badges}>
                                 <span>React</span>
                                 <span>ASP.NET Core</span>
-                                <span>MySQL</span>
+                                <span>PostgreSQL</span>
                             </div>
 
                             <p>
                                 Desenvolvedor focado em desenvolvimento web
                                 e back-end, apaixonado por tecnologia e pela
                                 criação de soluções eficientes utilizando
-                                ASP.NET Core, React e bancos de dados
-                                relacionais.
+                                ASP.NET Core, React, Entity Framework e PostgreSQL.
                             </p>
 
                             <p className={styles.projectDescription}>
                                 Atualmente desenvolvendo o <strong>Code Escape</strong>,
                                 uma plataforma de escape room online com React,
                                 ASP.NET Core, JWT Authentication, Entity Framework
-                                e MySQL.
+                                e PostgreSQL.
                             </p>
                         </div>
                     </div>
@@ -72,7 +71,7 @@ export default function Sobre() {
 
                             <div className={styles.skill}>
                                 <Database />
-                                MySQL
+                                PostgreSQL
                             </div>
 
                             <div className={styles.skill}>
@@ -109,7 +108,7 @@ export default function Sobre() {
                             </div>
 
                             <div className={styles.skill}>
-                                MySQL
+                                PostgreSQL
                             </div>
 
                             <div className={styles.skill}>
