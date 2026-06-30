@@ -175,6 +175,10 @@ export default function Cadastro() {
                         value={senha}
                         onChange={(e) => setSenha(e.target.value)}
                     />
+                    <small className={styles.passwordHint}>
+                        A senha deve ter no mínimo 8 caracteres, com letra maiúscula, letra
+                        minúscula, número e caractere especial.
+                    </small>
 
                     <input
                         type="password"

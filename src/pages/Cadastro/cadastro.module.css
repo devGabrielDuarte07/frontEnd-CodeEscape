@@ -154,6 +154,16 @@
     font-weight: 600;
 }
 
+
+.passwordHint {
+    display: block;
+    margin-top: 6px;
+    margin-bottom: 14px;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    line-height: 1.4;
+}
+
 @media (max-width: 600px) {
     .card {
         padding: 1.5rem;
