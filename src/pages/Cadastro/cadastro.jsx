@@ -19,6 +19,7 @@ export default function Cadastro() {
     const [preview, setPreview] = useState(null);
     const [avatarUrl, setAvatarUrl] = useState("");
     const [enviandoAvatar, setEnviandoAvatar] = useState(false);
+    const [criandoConta, setCriandoConta] = useState(false);
 
     async function handleAvatarChange(e) {
         const file = e.target.files?.[0];
@@ -76,6 +77,8 @@ export default function Cadastro() {
         };
 
         try {
+            setCriandoConta(true);
+
             await criarUsuario(dados);
 
             toast("success", "Conta criada com sucesso!");
@@ -88,6 +91,9 @@ export default function Cadastro() {
                 error?.response?.data?.mensagem ||
                 "Não foi possível criar a conta."
             );
+        }
+        finally {
+            setCriandoConta(false);
         }
     }
 
@@ -169,8 +175,15 @@ export default function Cadastro() {
                         }
                     />
 
-                    <button type="submit" disabled={enviandoAvatar}>
-                        {enviandoAvatar ? "Enviando imagem..." : "Criar Conta"}
+                    <button
+                        type="submit"
+                        disabled={enviandoAvatar || criandoConta}
+                    >
+                        {enviandoAvatar
+                            ? "Enviando imagem..."
+                            : criandoConta
+                                ? "Criando conta..."
+                                : "Criar Conta"}
                     </button>
                 </form>
 
