@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "../../utils/toast";
-import { UserPlus, Camera } from "lucide-react";
+import { UserPlus, Camera, Eye, EyeOff } from "lucide-react";
 import { criarUsuario } from "../../services/usuarioService";
 import { salvarAvatar } from "../../services/uploadService";
 import { API_URL } from "../../services/api";
@@ -20,6 +20,8 @@ export default function Cadastro() {
     const [avatarUrl, setAvatarUrl] = useState("");
     const [enviandoAvatar, setEnviandoAvatar] = useState(false);
     const [criandoConta, setCriandoConta] = useState(false);
+    const [mostrarSenha, setMostrarSenha] = useState(false);
+    const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
 
     async function handleAvatarChange(e) {
         const file = e.target.files?.[0];
@@ -169,26 +171,52 @@ export default function Cadastro() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
 
-                    <input
-                        type="password"
-                        placeholder="Senha"
-                        value={senha}
-                        onChange={(e) => setSenha(e.target.value)}
-                    />
+                    <div className={styles.passwordField}>
+                        <input
+                            type={mostrarSenha ? "text" : "password"}
+                            placeholder="Senha"
+                            value={senha}
+                            onChange={(e) => setSenha(e.target.value)}
+                        />
+
+                        <button
+                            type="button"
+                            className={styles.eyeButton}
+                            onClick={() => setMostrarSenha(!mostrarSenha)}
+                        >
+                            {mostrarSenha ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                    </div>
+
+
+
+                    <div className={styles.passwordField}>
+                        <input
+                            type={mostrarConfirmarSenha ? "text" : "password"}
+                            placeholder="Confirmar Senha"
+                            value={confirmarSenha}
+                            onChange={(e) => setConfirmarSenha(e.target.value)}
+                        />
+
+                        <button
+                            type="button"
+                            className={styles.eyeButton}
+                            onClick={() =>
+                                setMostrarConfirmarSenha(!mostrarConfirmarSenha)
+                            }
+                        >
+                            {mostrarConfirmarSenha ? (
+                                <EyeOff size={18} />
+                            ) : (
+                                <Eye size={18} />
+                            )}
+                        </button>
+                    </div>
+
                     <small className={styles.passwordHint}>
                         A senha deve ter no mínimo 8 caracteres, com letra maiúscula, letra
                         minúscula, número e caractere especial.
                     </small>
-
-                    <input
-                        type="password"
-                        placeholder="Confirmar Senha"
-                        value={confirmarSenha}
-                        onChange={(e) =>
-                            setConfirmarSenha(e.target.value)
-                        }
-                    />
-
                     <button
                         type="submit"
                         disabled={enviandoAvatar || criandoConta}

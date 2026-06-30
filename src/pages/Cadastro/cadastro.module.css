@@ -1,10 +1,8 @@
 .container {
     min-height: calc(100vh - 80px);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding: 2rem;
 
     background:
@@ -24,8 +22,7 @@
 
     padding: 2rem;
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, .25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
 }
 
 .header {
@@ -55,7 +52,6 @@
 .avatarSection {
     display: flex;
     justify-content: center;
-
     margin-bottom: 2rem;
 }
 
@@ -67,31 +63,41 @@
     width: 110px;
     height: 110px;
 
-    border-radius: 50%;
     object-fit: cover;
-
+    border-radius: 50%;
     border: 3px solid var(--primary);
+
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(139, 92, 246, .35);
 }
 
 .cameraButton {
     position: absolute;
-
     right: 0;
     bottom: 0;
 
-    width: 32px;
-    height: 32px;
-
-    border-radius: 50%;
+    width: 34px;
+    height: 34px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    border-radius: 50%;
     cursor: pointer;
 
     background: var(--primary);
-    color: white;
+    color: #fff;
+
+    transition: .2s;
+}
+
+.cameraButton:hover {
+    transform: scale(1.08);
 }
 
 .form {
@@ -106,20 +112,34 @@
 
     padding: 0 1rem;
 
-    border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 12px;
 
     background: rgba(255, 255, 255, .03);
     color: var(--text);
 
     outline: none;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
 }
 
 .form input:focus {
     border-color: var(--primary);
+    background: rgba(255, 255, 255, .05);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, .15);
 }
 
-.form button {
+.form input::placeholder {
+    color: rgba(255, 255, 255, .45);
+}
+
+/* BOTÃO PRINCIPAL */
+.form>button {
+    margin-top: .5rem;
+
     height: 52px;
 
     border: none;
@@ -130,46 +150,129 @@
     font-size: 1rem;
     font-weight: 600;
 
-    background: var(--primary);
-    color: white;
+    background: linear-gradient(135deg,
+            #7c4dff,
+            #8b5cf6);
 
-    transition: .2s;
+    color: #fff;
+
+    transition:
+        transform .2s ease,
+        filter .2s ease,
+        box-shadow .2s ease;
 }
 
-.form button:hover {
+.form>button:hover:not(:disabled) {
     transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 8px 22px rgba(139, 92, 246, .35);
+}
+
+.form>button:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+/* CAMPOS DE SENHA */
+
+.passwordField {
+    position: relative;
+}
+
+.passwordField input {
+    padding-right: 52px;
+}
+
+.eyeButton {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    padding: 0;
+    margin: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    color: var(--text-secondary);
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        transform .15s ease;
+}
+
+.eyeButton:hover {
+    color: var(--primary);
+    background: rgba(139, 92, 246, .12);
+    transform: translateY(-50%);
+}
+
+.eyeButton:active {
+    transform: translateY(-50%) scale(.92);
+}
+
+.eyeButton:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.passwordHint {
+    margin: -.4rem 0 .5rem;
+
+    font-size: .8rem;
+    line-height: 1.45;
+
+    color: var(--text-secondary);
 }
 
 .loginText {
-    text-align: center;
-
     margin-top: 1.5rem;
 
+    text-align: center;
     color: var(--text-secondary);
 }
 
 .loginText a {
     color: var(--primary);
-    text-decoration: none;
     font-weight: 600;
+    text-decoration: none;
+
+    transition: color .2s;
 }
 
-
-.passwordHint {
-    display: block;
-    margin-top: 6px;
-    margin-bottom: 14px;
-    font-size: 0.8rem;
-    color: #9ca3af;
-    line-height: 1.4;
+.loginText a:hover {
+    color: #a78bfa;
 }
 
 @media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
     .card {
         padding: 1.5rem;
+        border-radius: 18px;
     }
 
     .header h1 {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
+    }
+
+    .avatar {
+        width: 96px;
+        height: 96px;
     }
 }

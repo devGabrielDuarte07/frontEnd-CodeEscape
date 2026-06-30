@@ -247,6 +247,63 @@
     color: white;
 }
 
+
+.passwordField {
+    position: relative;
+    width: 100%;
+}
+
+.passwordField input {
+    width: 100%;
+    padding-right: 52px;
+}
+
+.eyeButton {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    color: var(--text-secondary);
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        transform .15s ease;
+}
+
+.eyeButton:hover {
+    color: var(--primary);
+    background: rgba(139, 92, 246, .12);
+    transform: translateY(-50%);
+}
+
+.eyeButton:active {
+    transform: translateY(-50%) scale(.92);
+}
+
+.eyeButton:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
 /* Tablet */
 
 @media (max-width: 768px) {

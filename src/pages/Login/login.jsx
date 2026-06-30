@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Lock } from "lucide-react";
+import { Lock, Eye, EyeOff } from "lucide-react";
 
 import { login } from "../../services/authService";
 import { useUser } from "../../context/UserContext";
@@ -15,6 +15,7 @@ export default function Login() {
     const [user, setUser] = useState("");
     const [senha, setSenha] = useState("");
     const [enviando, setEnviando] = useState(false);
+    const [mostrarSenha, setMostrarSenha] = useState(false);
 
     async function fazerLogin(e) {
         e.preventDefault();
@@ -45,7 +46,7 @@ export default function Login() {
             toast(
                 "error",
                 error?.response?.data?.mensagem ||
-                    "Usuário ou senha inválidos."
+                "Usuário ou senha inválidos."
             );
         } finally {
             setEnviando(false);
@@ -80,12 +81,27 @@ export default function Login() {
                 <div className={styles.formGroup}>
                     <label>Senha</label>
 
-                    <input
-                        type="password"
-                        value={senha}
-                        disabled={enviando}
-                        onChange={(e) => setSenha(e.target.value)}
-                    />
+                    <div className={styles.passwordField}>
+                        <input
+                            type={mostrarSenha ? "text" : "password"}
+                            value={senha}
+                            disabled={enviando}
+                            onChange={(e) => setSenha(e.target.value)}
+                        />
+
+                        <button
+                            type="button"
+                            className={styles.eyeButton}
+                            onClick={() => setMostrarSenha(!mostrarSenha)}
+                            tabIndex={-1}
+                        >
+                            {mostrarSenha ? (
+                                <EyeOff size={18} />
+                            ) : (
+                                <Eye size={18} />
+                            )}
+                        </button>
+                    </div>
                 </div>
 
                 <button
