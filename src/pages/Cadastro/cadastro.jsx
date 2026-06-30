@@ -67,6 +67,16 @@ export default function Cadastro() {
             return toast("error", "As senhas não coincidem.");
         }
 
+        const senhaValida =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/.test(senha);
+
+        if (!senhaValida) {
+            return toast(
+                "warning",
+                "A senha deve ter pelo menos 8 caracteres, incluindo letra maiúscula, letra minúscula, número e caractere especial."
+            );
+        }
+
         const dados = {
             nome,
             username,
